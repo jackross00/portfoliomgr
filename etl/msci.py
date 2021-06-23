@@ -1,8 +1,8 @@
 import pandas as pd
-from Portfoliomgr.common import db
-import sys, os, sqlalchemy, psycopg2
+from portfoliomgr.common import db
+import sys, pathlib, os, sqlalchemy, psycopg2
 
-index_xl = Path(__file__).parent / '../data/historyIndex.xls'
+index_xl = pathlib.Path(__file__).parent / '../data/historyIndex.xls'
 df = pd.read_excel(index_xl,sheet_name='History Index',header=6)
 
 ### Subset rows where no indices have data ###
@@ -16,3 +16,6 @@ df = df.rename(columns={"Date": "mrkt_dt", "value": "mkt_val"}, errors="raise")
 
 db.exec_sql(schema='webapp',cmd='DROP TABLE IF EXISTS load_index_perf')
 df.to_sql('load_index_perf', db.engine)
+
+
+
