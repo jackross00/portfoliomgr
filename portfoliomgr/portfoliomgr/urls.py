@@ -23,6 +23,6 @@ from accounts import urls as acc_urls
 urlpatterns = [
     path('accounts/', acc_vw.index, name='accounts'),
     path('admin/', admin.site.urls),
-    path('', views.index, name='Index'),
+    path('', views.index, name='index'),
     path('',include(acc_urls))
 ]
