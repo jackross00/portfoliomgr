@@ -1,0 +1,17 @@
+<style>
+    .container {
+        display: grid; 
+        grid-template-columns: 0.5fr; 
+        grid-template-rows: 3fr; 
+        gap: 0px ; 
+        grid-template-areas: 
+        "module"; 
+    }
+    .module { grid-area: module; }
+</style>
+
+<div class="container">
+    <div class="module">
+        {{ graph|safe }}
+    </div>
+</div>
