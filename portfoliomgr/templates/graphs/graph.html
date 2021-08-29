@@ -1,17 +1,81 @@
 <style>
-    .container {
+    .module_container {
         display: grid; 
-        grid-template-columns: 0.5fr; 
-        grid-template-rows: 3fr; 
-        gap: 0px ; 
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
         grid-template-areas: 
-        "module"; 
+        ". module_area ."; 
+        min-width: 100%; 
+        height: 33.1%; 
     }
-    .module { grid-area: module; }
+    .module_area { 
+        grid-area: module_area;
+        display: block;
+        margin: 0 auto;
+    }
+    .graph {
+        opacity: 1;
+        transition: .3s;
+    }
+    .graph:hover {
+        opacity: .1;
+    }
+    .perf_overlay_container{
+        grid-area: module_area;
+        display: grid; 
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "perf_download perf_upload perf_settings"; 
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .3s;
+    }
+    .perf_overlay_container:hover{
+        opacity: 1;
+        z-index: 10;
+        background-color: rgb(100,100,100,.4);
+    }
+    #perf_download{
+        grid-area: perf_download;
+        display: block;
+        margin: auto auto;
+    }
+    #perf_upload{
+        grid-area: perf_upload;
+        display: block;
+        margin: auto auto;
+    }
+    #perf_settings{
+        grid-area: perf_settings;
+        display: block;
+        margin: auto auto;
+    }
+    img {
+        height: 50%;
+        width: 50%;
+    }
+    img.displayed {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
 
-<div class="container">
-    <div class="module">
-        {{ graph|safe }}
+{% load static %}
+
+<body>
+    <div class="module_container">
+        <div class="module_area graph">
+                {{ graph|safe }}
+        </div>
+        <div class="module_area perf_overlay_container"> 
+                <div id="perf_download"> <img class="displayed" src="{% static "img/interface/022-download.svg" %}" alt="Download Graph"> </div>
+                <div id="perf_upload"> <img class="displayed" src="{% static "img/interface/021-upload.svg" %}" alt="Upload Portfolio"> </div>
+                <div id="perf_settings"> <img class="displayed" src="{% static "img/interface/031-list.svg" %}" alt="Upload Portfolio"> </div>
+        </div>
     </div>
-</div>
+</body>

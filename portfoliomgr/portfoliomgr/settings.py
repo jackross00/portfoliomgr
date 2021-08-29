@@ -120,6 +120,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -137,3 +142,5 @@ TEMPLATES = [
         },
     },
 ]
+
+print('Base dir is {}'.format(BASE_DIR))

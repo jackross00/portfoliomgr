@@ -13,12 +13,13 @@ import matplotlib.pyplot as plt
 def msci_graph():
     context = {}
     fig = plt.figure()
-    imgdata = StringIO()\
+    plt.rcParams["figure.figsize"] = (9,5)
+    imgdata = StringIO()
 
     msci_dat = msci_bchmk_graph()
     msci_dat.plot()
     msci_dat.plot().legend()
-    fig = msci_dat.plot().get_figure()
+    fig = msci_dat.plot(). get_figure()
     fig.savefig(imgdata, format='svg')
     imgdata.seek(0)
     data = imgdata.getvalue()

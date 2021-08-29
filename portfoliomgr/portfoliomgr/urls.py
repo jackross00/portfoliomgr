@@ -19,7 +19,6 @@ from . import views
 from django.conf.urls import url
 from accounts import views as acc_vw
 from accounts import urls as acc_urls
-
 urlpatterns = [
     path('accounts/', acc_vw.index, name='accounts'),
     path('admin/', admin.site.urls),
